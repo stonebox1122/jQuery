@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0px;
+        }
+
+        .div1 {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            top: 50px;
+            left: 10px;
+            background: red;
+        }
+    </style>
+    <!--
+        1. 扩展jQuery的工具方法
+          $.extend(object)
+        2. 扩展jQuery对象的方法
+          $.fn.extend(object)
+        -->
+    <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="js/jquery-plugin.js"></script>
+    <script type="text/javascript">
+        /*
+         需求：
+         1. 给 $ 添加4个工具方法:
+           * min(a, b) : 返回较小的值
+           * max(c, d) : 返回较大的值
+           * leftTrim() : 去掉字符串左边的空格
+           * rightTrim() : 去掉字符串右边的空格
+         2. 给jQuery对象 添加3个功能方法:
+           * checkAll() : 全选
+           * unCheckAll() : 全不选
+           * reverseCheck() : 全反选
+         */
+        $(function () {
+            console.log($.min(3, 5), $.max(3, 5));
+            var string = '   my stone   ';
+            console.log('----' + $.leftTrim(string) + '-----');
+            console.log('----' + $.rightTrim(string) + '-----');
+
+            var $items = $(':checkbox[name=items]');
+            $('#checkedAllBtn').click(function () {
+                $items.checkAll();
+            });
+            $('#checkedNoBtn').click(function () {
+                $items.unCheckAll();
+            });
+            $('#reverseCheckedBtn').click(function () {
+                $items.reverseCheck();
+            });
+        })
+    </script>
+</head>
+    <body>
+    <input type="checkbox" name="items" value="足球"/>足球
+    <input type="checkbox" name="items" value="篮球"/>篮球
+    <input type="checkbox" name="items" value="羽毛球"/>羽毛球
+    <input type="checkbox" name="items" value="乒乓球"/>乒乓球
+    <br/>
+    <input type="button" id="checkedAllBtn" value="全　选"/>
+    <input type="button" id="checkedNoBtn" value="全不选"/>
+    <input type="button" id="reverseCheckedBtn" value="反选"/>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #to_top {
+            width: 30px;
+            height: 40px;
+            font: 14px/20px arial;
+            text-align: center;
+            background: #06c;
+            position: fixed;
+            cursor: pointer;
+            color: #fff;
+            left: 1050px;
+            top: 500px;
+        }
+    </style>
+    <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="js/tools.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#to_top').click(function () {
+                //瞬间回到顶部
+                //$('html,body').scrollTop(0);
+
+                //平滑回到顶部
+                //总距离
+                var $page = $('html,body'); //只能用于设置
+                var distance = $('html').scrollTop() + $('body').scrollTop();
+                //console.log(distance);
+                //总时间
+                var time = 500;
+                //间隔时间
+                var intervalTime = 50;
+                var itemDistance = distance/(time/intervalTime);
+                //使用循环定时器不断滚动
+                var timer = setInterval(function () {
+                    distance -= itemDistance;
+                    //到达顶部，停止计时器
+                    if(distance < 0){
+                        distance = 0;
+                        clearInterval(timer);
+                    }
+                    $page.scrollTop(distance);
+                },intervalTime);
+
+                /*console.log(getComputedStyle(document.body, null).height);
+                move(document.body,"height",itemDistance,0,function () {
+
+                });*/
+            })
+        })
+    </script>
+</head>
+<body style="height: 2000px;">
+    <div id="to_top">返回顶部</div>
+</body>
+</html>

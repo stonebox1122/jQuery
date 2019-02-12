@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="js/jquery-1.12.4.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            // 1. $.each(): 遍历数组或对象中的数据
+            var obj = {name:'tom',setName:function (name) {
+                    this.name = name;
+                }}
+            $.each(obj, function (key, value) {
+                console.log(key, value);
+            })
+
+            // 2. $.trim(): 去除字符串两边的空格
+            // 3. $.type(obj): 得到数据的类型
+            console.log($.type($)); //输出 function
+
+            // 4. $.isArray(obj): 判断是否是数组
+            console.log($.isArray($('body')), $.isArray([])); //输出 false true
+
+            // 5. $.isFunction(obj): 判断是否是函数
+            console.log($.isFunction($)); //输出 true
+
+            // 6. $.parseJSON(json) : 解析json字符串转换为js对象/数组
+            var json = '{"name":"tom","age":12}'; //json对象
+            //json对象 ===> JS对象
+            console.log($.parseJSON(json)); //输出 {name: "tom", age: 12}
+
+            json = '[{"name":"tom","age":12}, {"name":"jerry","age":11}]'; //json数组
+            //json数组 ===> JS数组
+            console.log($.parseJSON(json)); //输出 [{…}, {…}]
+
+            /**
+             * JSON.parse(jsonString) json字符串 ---> js对象/数组
+             * JSON.stringify(jsObj/jsArr) js对象/数组 ---> json字符串
+             */
+        })
+    </script>
+</head>
+<body>
+
+</body>
+</html>
